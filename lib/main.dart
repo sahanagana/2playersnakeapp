@@ -81,11 +81,10 @@ int col = 50;
 
 class _SunflowerState extends State<Sunflower> {
  
-
   @override
   Widget build(BuildContext context) {
-    //width = MediaQuery.of(context).size.width;
-    //height = MediaQuery.of(context).size.height;
+    //double width = MediaQuery.of(context).size.width;
+    //double height = MediaQuery.of(context).size.height;
     
     return MaterialApp(
      
@@ -102,12 +101,16 @@ class _SunflowerState extends State<Sunflower> {
         ),
         
         body: CustomPaint(
-            painter: SunflowerPainter(0),
+          child: Container(
+            alignment: Alignment(-0.5, -0.5),
+            child: CustomPaint(painter: SunflowerPainter(0),)
+            
                     
           ),
         ),  
 
-    );
+    )
+      );
   }
 }
 
