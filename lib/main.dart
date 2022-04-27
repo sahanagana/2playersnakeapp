@@ -47,10 +47,10 @@ class SunflowerPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     
-int row = 50;
-int col = 50;
+    int row = 50;
+    int col = 50;
 
-   final list=List<List<int>>.filled(row,List<int>.filled(col,0));
+    final list=List<List<int>>.filled(row,List<int>.filled(col,0));
     for(int x=0;x<list.length;x++){
     for (var y = 0; y <list[x].length; y++) {
       
@@ -71,10 +71,46 @@ int col = 50;
   void drawSeed(Canvas canvas, double x, double y) {
     
     final paint = Paint()
-      ..strokeWidth = .5
+      ..strokeWidth = 1
       ..style = PaintingStyle.stroke
       ..color = primaryColor;
-    canvas.drawRect(Rect.fromLTWH(x,y,10,10.0), paint);
+    canvas.drawRect(Rect.fromLTWH(x,y,100,10.0), paint);
+  }
+}
+class SnakePainter extends CustomPainter {
+  //final int seeds;
+ // SnakePainter(0);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    //final snake=List<int>.filled(5,1+x);
+    //final snake=<int>[<int>[0,1],<int>[0,1]]; 
+    //drawSeed(canvas,)
+     var snake = List.generate(3, (i) => [0,i+1], growable: true);
+    for(int i=0;i<snake.length;i++){
+    drawSeed(canvas,snake[i][0]*1.0,snake[i][1]*1.0);
+      print(snake[i][0]);
+      print(snake[i][1]);
+      }
+    //print(dataList);
+  drawSeed(canvas,100,100);  
+  }
+  
+
+  
+  @override
+  bool shouldRepaint(SnakePainter oldDelegate) {
+    return false;
+  }
+
+  // Draw a small circle representing a seed centered at (x,y).
+  void drawSeed(Canvas canvas, double x, double y) {
+    
+    final paint = Paint()
+      ..strokeWidth = 1
+      //..style = PaintingStyle.stroke
+      ..color = Colors.green;
+    canvas.drawRect(Rect.fromLTWH(x*11,y*11,10,10), paint);
   }
 }
 
@@ -85,7 +121,8 @@ class _SunflowerState extends State<Sunflower> {
   Widget build(BuildContext context) {
     //double width = MediaQuery.of(context).size.width;
     //double height = MediaQuery.of(context).size.height;
-    
+   
+
     return MaterialApp(
      
      // debugShowCheckedModeBanner: false,
@@ -101,16 +138,15 @@ class _SunflowerState extends State<Sunflower> {
         ),
         
         body: CustomPaint(
-          child: Container(
+          children: Container(
             alignment: Alignment(-0.5, -0.5),
-            child: CustomPaint(painter: SunflowerPainter(0),)
-            
+            child: CustomPaint(painter: SnakePainter(),)
+            //child: CustomPaint(painter: SunflowerPainter(),)
                     
           ),
         ),  
-
     )
-      );
+   );
   }
 }
 
