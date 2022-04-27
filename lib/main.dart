@@ -110,7 +110,7 @@ class SnakePainter extends CustomPainter {
       ..strokeWidth = 1
       //..style = PaintingStyle.stroke
       ..color = Colors.green;
-    canvas.drawRect(Rect.fromLTWH(x*11,y*11,10,10), paint);
+    canvas.drawRect(Rect.fromLTWH(x*11,y*11,100,10), paint);
   }
 }
 
@@ -138,14 +138,26 @@ class _SunflowerState extends State<Sunflower> {
         ),
         
         body: CustomPaint(
-          child: Container(
+          child: new Column(
+                        children: [
+                            new Container(
             alignment: Alignment(-0.5, -0.5),
             child: CustomPaint(painter: SnakePainter(),)
             //child: CustomPaint(painter: SunflowerPainter(),)
-                    
           ),
-        ),  
-    )
+         new Container(
+           alignment: Alignment(-.5,-.5),
+            child: CustomPaint(painter: SnakePainter(),)
+         )
+                        ],
+          ),  
+   
+                          ),
+                          ),
+                         
+                          
+                
+                          
    );
   }
 }
