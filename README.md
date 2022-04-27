@@ -17,7 +17,7 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Notes
 
--Snake class will have functions to get coordinates (GetX and GetY) that return the location of the object
+- Snake class will have functions to get coordinates (GetX and GetY) that return the location of the object
 - Use random number, generate # between -1 and 1 for x and y coordinates  
   - Check GetX and GetY functions to see if coordinates are not touching snake
     - If it is, get new coordinates. If not, place
