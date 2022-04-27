@@ -5,7 +5,8 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'dart:ui';
+
+//import 'package:simple_animations/simple_animations.dart';
 
 const Color primaryColor = Colors.black;
 const TargetPlatform platform = TargetPlatform.android;
@@ -43,7 +44,7 @@ class Sunflower extends StatefulWidget {
 class SunflowerPainter extends CustomPainter {
   final int seeds;
   SunflowerPainter(this.seeds);
-
+  
   @override
   void paint(Canvas canvas, Size size) {
     
@@ -80,13 +81,18 @@ class SunflowerPainter extends CustomPainter {
 class SnakePainter extends CustomPainter {
   //final int seeds;
  // SnakePainter(0);
-
+  double xstart=0;
+  double ystart=0;
+  SnakePainter(double x, double y){
+    xstart=x;
+    ystart=y;
+  }
   @override
   void paint(Canvas canvas, Size size) {
     //final snake=List<int>.filled(5,1+x);
     //final snake=<int>[<int>[0,1],<int>[0,1]]; 
     //drawSeed(canvas,)
-     var snake = List.generate(3, (i) => [0,i+1], growable: true);
+     var snake = List.generate(3, (i) => [0+xstart,ystart+i+1], growable: true);
     for(int i=0;i<snake.length;i++){
     drawSeed(canvas,snake[i][0]*1.0,snake[i][1]*1.0);
       print(snake[i][0]);
@@ -110,8 +116,9 @@ class SnakePainter extends CustomPainter {
       ..strokeWidth = 1
       //..style = PaintingStyle.stroke
       ..color = Colors.green;
-    canvas.drawRect(Rect.fromLTWH(x*11,y*11,100,10), paint);
+    canvas.drawRect(Rect.fromLTWH(x*11,y*11,10,10), paint);
   }
+  
 }
 
 
@@ -121,7 +128,7 @@ class _SunflowerState extends State<Sunflower> {
   Widget build(BuildContext context) {
     //double width = MediaQuery.of(context).size.width;
     //double height = MediaQuery.of(context).size.height;
-   
+   const double size=-.5;
 
     return MaterialApp(
      
@@ -138,26 +145,21 @@ class _SunflowerState extends State<Sunflower> {
         ),
         
         body: CustomPaint(
-          child: new Column(
-                        children: [
-                            new Container(
-            alignment: Alignment(-0.5, -0.5),
-            child: CustomPaint(painter: SnakePainter(),)
-            //child: CustomPaint(painter: SunflowerPainter(),)
-          ),
-         new Container(
-           alignment: Alignment(-.5,-.5),
-            child: CustomPaint(painter: SnakePainter(),)
-         )
-                        ],
-          ),  
-   
-                          ),
-                          ),
-                         
-                          
-                
-                          
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment(0, 1.0),
+                child: CustomPaint(painter: SnakePainter(0,0),)
+                //child: CustomPaint(painter: SunflowerPainter(),)
+              ),
+              Container(
+                alignment: Alignment(size,1),
+                child: CustomPaint(painter: SnakePainter(50,0),)
+              )
+            ],
+          ), 
+        ),
+      ),                    
    );
   }
 }
