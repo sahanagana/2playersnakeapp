@@ -138,7 +138,7 @@ class _SunflowerState extends State<Sunflower> {
         ),
         
         body: CustomPaint(
-          children: Container(
+          child: Container(
             alignment: Alignment(-0.5, -0.5),
             child: CustomPaint(painter: SnakePainter(),)
             //child: CustomPaint(painter: SunflowerPainter(),)
