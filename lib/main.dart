@@ -11,7 +11,7 @@ import 'dart:async';
 const Color primaryColor = Colors.black;
 const TargetPlatform platform = TargetPlatform.android;
 String direction1="right";
-
+GlobalKey snakex1=GlobalKey();
 //double height=0;
 
 
@@ -27,7 +27,7 @@ class Sunflower extends StatefulWidget {
   const Duration(seconds: 1),
   (timer) {
     //print("here");
-    SunflowerPainter(100);
+   // SunflowerPainter(100);
     // Update user about remaining time
   },
 );
@@ -146,21 +146,30 @@ class _SunflowerState extends State<Sunflower> {
         
         body: CustomPaint(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                alignment: Alignment(0, 1.0),
-                child: CustomPaint(painter: SnakePainter(0,0),)
+                alignment: Alignment(-1,-.5),
+                child: CustomPaint(painter: SnakePainter(1,0),)
                 //child: CustomPaint(painter: SunflowerPainter(),)
+               // snakex1=
               ),
               Container(
-                alignment: Alignment(size,1),
-                child: CustomPaint(painter: SnakePainter(50,0),)
-              )
+                alignment: Alignment(-1,-.5),
+                child: CustomPaint(painter: SnakePainter(50,1),)
+              ),
+              /*
+              Container(
+                alignment: Alignment.center,
+                child: CustomPaint(painter: SunflowerPainter(0),)
+              )*/
+              
             ],
           ), 
         ),
       ),                    
    );
+    
   }
 }
 
