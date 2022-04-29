@@ -81,22 +81,27 @@ class SunflowerPainter extends CustomPainter {
 class SnakePainter extends CustomPainter {
   //final int seeds;
  // SnakePainter(0);
-  double xstart=0;
-  double ystart=0;
-  SnakePainter(double x, double y){
+  int xstart=0;
+  int ystart=0;
+  var snake = <List<int>>[];
+  int direction=2;
+  SnakePainter(int x, int y){
     xstart=x;
     ystart=y;
+    for(int i=1;i<4;i++){
+    snake.add(<int>[0+x,y+i+0]);
+    
+    }
   }
   @override
   void paint(Canvas canvas, Size size) {
     //final snake=List<int>.filled(5,1+x);
     //final snake=<int>[<int>[0,1],<int>[0,1]]; 
     //drawSeed(canvas,)
-     var snake = List.generate(3, (i) => [0+xstart,ystart+i+1], growable: true);
+    print(snake);
     for(int i=0;i<snake.length;i++){
     drawSeed(canvas,snake[i][0]*1.0,snake[i][1]*1.0);
-      print(snake[i][0]);
-      print(snake[i][1]);
+      
       }
     //print(dataList);
   drawSeed(canvas,100,100);  
@@ -106,6 +111,7 @@ class SnakePainter extends CustomPainter {
   
   @override
   bool shouldRepaint(SnakePainter oldDelegate) {
+    
     return false;
   }
 
@@ -117,6 +123,34 @@ class SnakePainter extends CustomPainter {
       //..style = PaintingStyle.stroke
       ..color = Colors.green;
     canvas.drawRect(Rect.fromLTWH(x*11,y*11,10,10), paint);
+  }
+  void movedir(Canvas canvas, int dir){
+    direction=dir;
+    final periodicTimer = Timer.periodic(
+  const Duration(seconds: 1),
+  (timer) {
+    print("here");
+    snake[0].remove;
+    switch(direction){
+      case 0:
+        snake.add(<int>[snake[snake.length][0],snake[snake.length][1]-1]);
+        break;
+      case 1:
+                snake.add(<int>[snake[snake.length][0]+1,snake[snake.length][1]]);
+        break;
+      case 2:
+                snake.add(<int>[snake[snake.length][0],snake[snake.length][1]+1]);
+        break;
+      case 3:
+                snake.add(<int>[snake[snake.length][0]-1,snake[snake.length][1]]);
+        break;
+      default:
+        print("you did something wrong");
+    }
+
+  },
+);
+    
   }
   
 }
